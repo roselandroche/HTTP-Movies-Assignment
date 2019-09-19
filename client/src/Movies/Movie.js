@@ -40,8 +40,6 @@ export default class Movie extends React.Component {
     console.log(this.state)
     const deleted = this.state.movie
 
-    // this.setState(this.state.movie.filter(film => film.id !== id))
-
     axios
       .delete(`http://localhost:5000/api/movies/${id}`)
       .then(res => {
