@@ -12,9 +12,10 @@ function UpdateMovie(props) {
 
     useEffect(() => {
         axios
-            .get(`/movies/${props.match.params.id}`)
+            .get(`http://localhost:5000/api/movies/${props.match.params.id}`)
             .then(res => {
-                console.log(res)
+                // console.log(res.data)
+                setMovie(res.data)
             })
             .catch(err => console.log(err))
     }, [props.match.params.id])
@@ -23,7 +24,7 @@ function UpdateMovie(props) {
         event.preventDefault()
 
         axios
-            .put(`/update-movie/${movie.id}`, movie)
+            .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
             .then(res => {
                 setMovie({
                     id: '',
@@ -32,7 +33,7 @@ function UpdateMovie(props) {
                     metascore: '',
                     stars: []
                 })
-                props.history.push('/movies')
+                props.history.push('/')
             })
     }
 
@@ -69,15 +70,19 @@ function UpdateMovie(props) {
                 />
                 {movie.stars.map(star => {
                     return (
-                        <input
-                            type='text'
-                            name='stars'
-                            placeholder='Stars'
-                            value={movie.stars}
-                            onChange={handleChange}
-                        />)
+                        <>
+                            <label>Starring: </label>
+                            <input
+                                type='text'
+                                name='stars'
+                                placeholder='Stars'
+                                value={star}
+                                onChange={handleChange}
+                            />
+                        </>
+                    )
                 })}
-                
+                <button type='submit'>Save</button>
             </form>
         </div>
     )
