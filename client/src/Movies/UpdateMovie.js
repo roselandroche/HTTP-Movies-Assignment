@@ -14,7 +14,6 @@ function UpdateMovie(props) {
         axios
             .get(`http://localhost:5000/api/movies/${props.match.params.id}`)
             .then(res => {
-                // console.log(res.data)
                 setMovie(res.data)
             })
             .catch(err => console.log(err))
