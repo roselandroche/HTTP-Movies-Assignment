@@ -12,7 +12,7 @@ function UpdateMovie(props) {
 
     useEffect(() => {
         axios
-            .get(`/update-movie/${props.match.params.id}`)
+            .get(`/movies/${props.match.params.id}`)
             .then(res => {
                 console.log(res)
             })
